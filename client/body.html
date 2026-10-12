@@ -1,0 +1,368 @@
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="crown" viewBox="0 0 64 50">
+      <path d="M7 40 L4 13 L19 25 L32 5 L45 25 L60 13 L57 40 Z" fill="#FFD23F" stroke="#1F2A3A" stroke-width="4" stroke-linejoin="round"/>
+      <rect x="6" y="38" width="52" height="9" rx="2.5" fill="#F5B400" stroke="#1F2A3A" stroke-width="4"/>
+      <circle cx="32" cy="5" r="4" fill="#E85A5A" stroke="#1F2A3A" stroke-width="3"/>
+      <circle cx="4" cy="13" r="3.5" fill="#2FA8E8" stroke="#1F2A3A" stroke-width="3"/>
+      <circle cx="60" cy="13" r="3.5" fill="#5BCB4A" stroke="#1F2A3A" stroke-width="3"/>
+      <circle cx="32" cy="28" r="4" fill="#fff" stroke="#1F2A3A" stroke-width="3"/>
+    </symbol>
+    <symbol id="stickman" viewBox="0 0 84 96">
+      <g fill="none" stroke="#1F2A3A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 36 L36 64 M36 64 L24 76 L22 90 M36 64 L48 76 L58 86 M39 44 L26 52 L18 44 M39 44 L52 40 L60 28"/>
+        <circle cx="44" cy="22" r="13" fill="#fff"/>
+      </g>
+    </symbol>
+    <symbol id="medal" viewBox="0 0 32 32">
+      <path d="M10 2h5l3 9h-5zM22 2h-5l-3 9h5z" fill="#2FA8E8" stroke="#1F2A3A" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="16" cy="20" r="9" fill="#FFD23F" stroke="#1F2A3A" stroke-width="2.5"/>
+      <path d="M16 15l1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill="#fff" stroke="#1F2A3A" stroke-width="1.2" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <svg aria-hidden="true"><use href="#crown"/></svg>
+      <div>
+        <h1>King Office</h1>
+        <p data-i18n="sub"></p>
+      </div>
+    </div>
+    <ol class="steps" data-i18n-aria="steps.aria">
+      <li class="step" id="st1"><b>1</b><span data-i18n="step1"></span></li>
+      <li class="step" id="st2"><b>2</b><span data-i18n="step2"></span></li>
+      <li class="step" id="st3"><b>3</b><span data-i18n="step3"></span></li>
+      <li class="step" id="st4"><b>4</b><span data-i18n="step4"></span></li>
+    </ol>
+    <div class="tools">
+      <div class="seg lang-seg" role="group" aria-label="Idioma / Language"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div>
+      <button class="iconbtn mute-btn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="#1F2A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#FFD23F"/><path class="waves" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></button>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" data-tab="screen" aria-selected="false" data-i18n="tab.screen"></button>
+    <button role="tab" data-tab="phone" aria-selected="true" data-i18n="tab.phone"></button>
+    <button role="tab" data-tab="admin" aria-selected="false" data-i18n="tab.admin"></button>
+  </div>
+
+  
+  <section class="home" id="home" hidden>
+    <div class="home-hero">
+      <svg aria-hidden="true"><use href="#crown"/></svg>
+      <h1>King Office</h1>
+      <p data-i18n="home.sub"></p>
+    </div>
+    <div class="home-cards">
+      <form class="hcard" id="homeJoin" novalidate>
+        <svg class="hicon" aria-hidden="true"><use href="#stickman"/></svg>
+        <h2 data-i18n="home.joinT"></h2>
+        <p data-i18n="home.joinD"></p>
+        <label for="homeCode" data-i18n="f.code"></label>
+        <input id="homeCode" class="mono" maxlength="8" placeholder="KO-XXXXX" autocomplete="off" autocapitalize="characters">
+        <div class="err" id="homeJoinErr" role="alert"></div>
+        <button class="btn y" type="submit" data-i18n="home.joinB"></button>
+      </form>
+      <form class="hcard host" id="homeHost" novalidate>
+        <svg class="hicon" aria-hidden="true" viewBox="0 0 64 50"><use href="#crown"/></svg>
+        <h2 data-i18n="home.hostT"></h2>
+        <p data-i18n="home.hostD"></p>
+        <label for="homeEvent" data-i18n="g.event"></label>
+        <input id="homeEvent" maxlength="40" placeholder="Cumpleaños de María">
+        <div class="err" id="homeHostErr" role="alert"></div>
+        <button class="btn g" type="submit" data-i18n="home.hostB"></button>
+        <button class="btn w" type="button" id="homeBack" hidden></button>
+      </form>
+    </div>
+    <a class="plink" href="/demo" data-i18n="home.demo"></a>
+  </section>
+
+  <main class="stage">
+    <!-- PANTALLA GRANDE -->
+    <section class="zone zone-screen">
+      <div class="float-tools screen-tools"><div class="seg lang-seg" role="group" aria-label="Idioma / Language"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div><button class="iconbtn mute-btn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="#1F2A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#FFD23F"/><path class="waves" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></button><button class="iconbtn" id="tvFull" aria-label="Pantalla completa / Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="#1F2A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
+      <div class="zone-label" data-i18n="zone.screen"></div>
+      <div class="tv">
+        <div class="tv-in" id="tv" data-phase="LOBBY">
+          <div class="cloud" style="width:11cqw;height:3.4cqw;left:6%;top:8%"></div>
+          <div class="cloud" style="width:8cqw;height:2.6cqw;left:58%;top:6%"></div>
+          <div class="cloud" style="width:13cqw;height:3.8cqw;left:80%;top:15%"></div>
+          <div class="tv-bar" id="tvBar" hidden><span class="ev" id="barEv"></span><span class="rd" id="barRd"></span><span class="cd" id="barCd"></span></div>
+
+          <div class="scene s-lobby">
+            <div class="lobby">
+              <div class="qr-card">
+                <div class="qr-box" id="qr"></div>
+                <div class="code"><small data-i18n="lobby.session"></small><b id="codeBig">KO-8F29A</b></div>
+                <div class="qr-url" id="qrUrl">king-office.workers.dev</div>
+                <button class="scan-btn" id="scanBtn" data-i18n="lobby.scan"></button>
+              </div>
+              <div style="min-width:0">
+                <span class="eyebrow" id="evName"></span>
+                <h2 class="big-text">King Office</h2>
+                <p class="sub" data-i18n="lobby.sub"></p>
+                <div class="joined"><span class="n" id="joinN">0</span><span class="l" id="joinL"></span><span class="lockbadge" id="lockBadge" hidden data-i18n="lobby.locked"></span></div>
+                <div class="chips" id="chips"></div>
+              </div>
+            </div>
+            <canvas id="attract" aria-hidden="true"></canvas>
+          </div>
+
+          <div class="scene s-intro"><div class="intro-tv" id="introTv"></div></div>
+
+          <div class="scene s-live">
+            <div class="live">
+              <div class="live-head">
+                <h2 class="big-text" id="liveTitle"></h2>
+                <span class="pill"><i></i><span data-i18n="live.live"></span></span>
+                <span class="clock" id="clock">00:00</span>
+              </div>
+              <div class="done-bar"><span id="doneTxt"></span><div class="track"><div class="fill" id="doneFill"></div></div></div>
+              <div class="board" id="board"></div>
+              <div class="mine" id="mine"></div>
+            </div>
+          </div>
+
+          <div class="scene s-results">
+            <div class="live">
+              <div class="live-head"><h2 class="big-text" id="resTitle"></h2></div>
+              <div class="board" id="board2"></div>
+              <div class="res-foot"><span class="mvp" id="resMvp"></span><span class="nx" id="resNext"></span></div>
+            </div>
+          </div>
+
+          <div class="scene s-final">
+            <canvas id="confetti" aria-hidden="true"></canvas>
+            <div class="fin-nav" id="finNav">
+              <button data-v="podium" data-i18n="fin.podium"></button>
+              <button data-v="top" data-i18n="fin.top"></button>
+              <button data-v="cats" data-i18n="fin.cats"></button>
+              <button data-v="king" data-i18n="fin.king"></button>
+            </div>
+            <div class="fv" data-v="podium"><div class="podium" id="podium"></div></div>
+            <div class="fv fv-top" data-v="top"><h2 class="big-text" data-i18n="fin.top10"></h2><div class="board" id="board3"></div></div>
+            <div class="fv fv-cats" data-v="cats"><h2 class="big-text" data-i18n="fin.catsTitle"></h2><div class="cats-tbl" id="catsTbl"></div></div>
+            <div class="fv kingv" data-v="king" id="kingV"></div>
+          </div>
+
+          <div class="toast-layer" id="toasts" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CELULAR -->
+    <section class="zone zone-phone">
+      <div class="zone-label" data-i18n="zone.phone"></div>
+      <div class="phone-area">
+        <div class="float-tools phone-tools"><div class="seg lang-seg" role="group" aria-label="Idioma / Language"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div><button class="iconbtn mute-btn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="#1F2A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#FFD23F"/><path class="waves" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></button><button class="iconbtn mus-phone-btn" id="musPhone" aria-pressed="true" data-i18n-aria="mus.phone"><svg viewBox="0 0 24 24" fill="none" stroke="#1F2A3A" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.6" fill="#FFD23F"/><circle cx="17.5" cy="16" r="2.6" fill="#FFD23F"/><path class="slash" d="M3 3l18 18" stroke="#E85A5A" stroke-width="2.6"/></svg></button></div>
+        <div class="phone" id="phone">
+          <div class="ps" id="ps">
+            <canvas id="gcv" hidden></canvas>
+
+            <form class="pv scroll" id="pv-join" novalidate>
+              <h3 data-i18n="join.title" style="margin-top:4px"></h3>
+              <div class="field">
+                <label for="codeIn" data-i18n="f.code"></label>
+                <input id="codeIn" class="mono" maxlength="8" autocomplete="off" placeholder="KO-XXXXX">
+              </div>
+              <div class="field">
+                <label for="nameIn" data-i18n="f.name"></label>
+                <input id="nameIn" maxlength="20" autocomplete="off" placeholder="Ana L.">
+              </div>
+              <div class="field">
+                <span class="lbl" id="avLbl" data-i18n="f.avatar"></span>
+                <div class="avgrid" id="avGrid" role="group" aria-labelledby="avLbl"></div>
+              </div>
+              <p class="joinnote" id="joinNote" hidden></p>
+              <div class="err" id="joinErr" role="alert"></div>
+              <button class="btn y" type="submit" data-i18n="f.enter"></button>
+            </form>
+
+            <div class="pv" id="pv-wait" hidden>
+              <div class="bigav hop" id="waitAv"></div>
+              <h3 id="hello"></h3>
+              <p data-i18n="wait.text"></p>
+              <div class="wcount" id="waitCount"></div>
+              <p style="font-weight:700;font-size:13px" data-i18n="wait.tip"></p>
+              <button type="button" class="btn w snd-test" id="sndTest" data-i18n="snd.test"></button>
+              <p class="snd-msg" id="sndMsg" hidden></p>
+            </div>
+
+            <div class="pv" id="pv-late" hidden>
+              <svg class="mini-stick hop" aria-hidden="true"><use href="#stickman"/></svg>
+              <h3 data-i18n="late.title"></h3>
+              <p data-i18n="late.text"></p>
+            </div>
+
+            <div class="pv" id="pv-kicked" hidden>
+              <h3 data-i18n="kicked.title"></h3>
+              <p data-i18n="kicked.text"></p>
+              <button class="btn y" id="rejoin" data-i18n="kicked.btn"></button>
+            </div>
+
+            <div class="pv" id="pv-results" hidden></div>
+            <div class="pv scroll" id="pv-final" hidden></div>
+
+            <span class="demo-tag" id="demoTag" hidden data-i18n="tut.demo"></span>
+            <div class="tut" id="tut" hidden>
+              <div class="tut-card">
+                <small id="tutRound"></small>
+                <h4 id="tutName"></h4>
+                <div id="tutChip"></div>
+                <ul class="tut-list">
+                  <li><span class="ti" id="tutIcon"></span><span id="tutCtrl"></span></li>
+                  <li class="tplus"><span class="ti">+</span><span id="tutPlus"></span></li>
+                  <li class="tminus"><span class="ti">−</span><span id="tutMinus"></span></li>
+                </ul>
+                <div class="tut-btns"><button class="btn w" id="tutTry" data-i18n="tut.try"></button><button class="btn g" id="tutReady" data-i18n="tut.ready"></button></div>
+                <div class="tut-status" id="tutStatus"></div>
+              </div>
+            </div>
+            <div class="practice-bar" id="practiceBar" hidden><span data-i18n="tut.practice"></span><button type="button" class="mini" id="tutBack" data-i18n="tut.back"></button></div>
+            <div class="ov" id="ov-count" hidden><div class="intro" id="countBox"></div></div>
+            <div class="ov clear" id="ov-go" hidden><div class="count go" id="goTxt">GO!</div></div>
+            <div class="ov" id="ov-over" hidden><div class="card" id="overCard"></div></div>
+            <div class="rotate" id="rotate"><svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="#1F2A3A" stroke-width="4" stroke-linejoin="round"><rect x="20" y="6" width="24" height="44" rx="5" fill="#fff"/><path d="M52 40a20 20 0 0 1-20 18" stroke-linecap="round"/><path d="M30 54l3 4-4 3" stroke-linecap="round"/></svg><h3 data-i18n="rot.title"></h3><p data-i18n="rot.text"></p><button class="btn y" id="fullBtn" data-i18n="rot.full"></button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN -->
+    <section class="zone zone-admin">
+      <div class="zone-label" data-i18n="zone.admin"></div>
+      <div class="admin">
+        
+        <div id="adminBody" class="adminbody">
+        <div class="ad-head">
+          <h2 data-i18n="ad.title"></h2>
+          <span class="state" id="aState" data-s="LOBBY"><i></i><span></span></span>
+          <span class="ad-code" id="aCode"></span>
+        </div>
+                <div class="links" id="liveLinks" hidden>
+          <div><small data-i18n="links.screen"></small><code id="lkScreen"></code><button type="button" class="mini" id="lkFull" data-i18n="links.project"></button><button type="button" class="mini" id="lkOpen" data-i18n="links.open"></button><button type="button" class="mini" data-copy="#lkScreen" data-i18n="links.copy"></button></div>
+          <div><small data-i18n="links.join"></small><code id="lkJoin"></code><button type="button" class="mini" data-copy="#lkJoin" data-i18n="links.copy"></button></div>
+          <div class="lk-new"><button type="button" class="mini" id="lkNew" data-i18n="links.new"></button></div>
+        </div>
+        <p class="warnbox err-box" id="adErr" hidden role="alert"></p>
+        <div class="atabs" role="tablist">
+          <button role="tab" data-at="control" aria-selected="true" data-i18n="ad.tab.control"></button>
+          <button role="tab" data-at="games" aria-selected="false" data-i18n="ad.tab.games"></button>
+          <button role="tab" data-at="players" aria-selected="false" data-i18n="ad.tab.players"></button>
+          <button role="tab" data-at="music" aria-selected="false" data-i18n="ad.tab.music"></button>
+        </div>
+
+        <div class="apanel" id="ap-control">
+          <div class="dash">
+            <div><small data-i18n="dash.connected"></small><b id="dConn">0</b></div>
+            <div><small id="dActL" data-i18n="dash.active"></small><b id="dAct">0</b></div>
+            <div><small data-i18n="dash.round"></small><b id="dRound">—</b></div>
+            <div><small data-i18n="dash.time"></small><b id="dTime">—</b></div>
+            <div class="wide"><small data-i18n="dash.game"></small><b id="dGame">—</b></div>
+            <div class="wide"><small data-i18n="dash.leader"></small><b id="dLead">—</b></div>
+          </div>
+          <div class="ad-actions">
+            <button class="btn g" id="aStart" data-i18n="btn.start"></button>
+            <button class="btn" id="aNext"></button>
+            <button class="btn w" id="aPause"></button>
+            <button class="btn y" id="aEnd" data-i18n="btn.end"></button>
+            <button class="btn r" id="aReset" data-i18n="btn.reset"></button>
+            <button class="btn w" id="aLock"></button>
+          </div>
+          <div class="confirm" id="aConfirm" hidden>
+            <p id="aConfirmTxt"></p>
+            <div><button class="btn r" id="aYes"></button><button class="btn w" id="aNo" data-i18n="confirm.no"></button></div>
+          </div>
+          <div class="mini-rank" id="miniRank"></div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button class="btn w" id="aCsv" style="font-size:17px;min-height:46px" data-i18n="btn.csv"></button>
+            <textarea class="csvbox" id="csvBox" hidden readonly aria-label="CSV"></textarea>
+          </div>
+        </div>
+
+        <div class="apanel" id="ap-games" hidden>
+          <p class="hint" id="lockHint" hidden data-i18n="g.locked"></p>
+          <div class="settings">
+            <div class="set">
+              <label for="evIn" data-i18n="g.event"></label>
+              <input type="text" id="evIn" maxlength="34">
+            </div>
+            <div class="set">
+              <span class="lbl" id="modeLbl" data-i18n="g.mode"></span>
+              <div class="seg flat" role="group" aria-labelledby="modeLbl" id="modeSeg">
+                <button data-m="random" aria-pressed="true" data-i18n="mode.random"></button>
+                <button data-m="manual" aria-pressed="false" data-i18n="mode.manual"></button>
+              </div>
+            </div>
+            <div class="set">
+              <span class="lbl" id="durLbl" data-i18n="g.dur"></span>
+              <div class="seg flat" role="group" aria-labelledby="durLbl" id="durSeg">
+                <button data-d="game" aria-pressed="true" data-i18n="dur.game"></button>
+                <button data-d="20" aria-pressed="false">20 s</button>
+                <button data-d="45" aria-pressed="false">45 s</button>
+              </div>
+            </div>
+            <div class="set">
+              <span class="lbl" id="introLbl" data-i18n="g.intro"></span>
+              <div class="seg flat" role="group" aria-labelledby="introLbl" id="introSeg">
+                <button data-i="15" aria-pressed="false">15 s</button>
+                <button data-i="25" aria-pressed="true">25 s</button>
+                <button data-i="40" aria-pressed="false">40 s</button>
+              </div>
+            </div>
+            <div class="set" id="roundsSet">
+              <label for="roundsIn" id="roundsLbl"></label>
+              <input type="range" id="roundsIn" min="2" max="18" value="5">
+            </div>
+          </div>
+          <div class="set">
+            <span class="lbl" data-i18n="g.plan"></span>
+            <div class="plan" id="planBox"></div>
+            <button class="btn w" id="drawBtn" style="font-size:16px;min-height:42px" data-i18n="g.draw"></button>
+          </div>
+          <p class="hint" id="glistHint"></p>
+          <div class="glist" id="glist"></div>
+        </div>
+
+        <div class="apanel" id="ap-players" hidden>
+          <div class="set">
+            <label for="bots" id="botsLbl"></label>
+            <input type="range" id="bots" min="0" max="98" value="46">
+          </div>
+          <div class="plist" id="plist"></div>
+        </div>
+
+        <div class="apanel" id="ap-music" hidden>
+          <div class="mus-now">
+            <div class="mus-disc" id="musDisc" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#1F2A3A"/><circle cx="20" cy="20" r="12" fill="none" stroke="#3A4A60" stroke-width="1.5"/><circle cx="20" cy="20" r="6" fill="#FFD23F" stroke="#1F2A3A" stroke-width="2"/><path d="M9 14a12 12 0 0 1 6-6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/></svg></div>
+            <div class="mus-info"><small id="musMom"></small><b id="musTitle"></b></div>
+          </div>
+          <p class="warnbox" id="musWarn" hidden role="status"></p>
+          <button type="button" class="btn w snd-test" id="musTest" data-i18n="snd.test"></button>
+          <div class="mus-btns">
+            <button class="btn w" id="musPlay"></button>
+            <button class="btn w" id="musNext"></button>
+          </div>
+          <div class="set">
+            <label for="musVol" id="musVolL"></label>
+            <input type="range" id="musVol" min="0" max="100" value="80">
+          </div>
+          <div class="set">
+            <span class="lbl" id="musMomT"></span>
+            <div class="mus-moments" id="musMoments"></div>
+          </div>
+          <p class="hint" id="musHint"></p>
+        </div>
+
+        <p class="note-demo" id="demoNote"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="netbar" id="net" hidden data-i18n="net.off"></div>
+<button type="button" class="mus-unlock" id="musUnlock" hidden></button>

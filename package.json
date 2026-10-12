@@ -1,0 +1,13 @@
+{
+  "name": "king-office",
+  "private": true,
+  "description": "Torneos de minijuegos para la oficina (Cloudflare Workers + D1)",
+  "scripts": {
+    "build": "python3 tools/build.py",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.40.0"
+  }
+}

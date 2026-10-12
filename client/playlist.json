@@ -1,0 +1,164 @@
+{
+  "_info": "Lista de música de King Office. 'tracks' son los archivos de esta carpeta; 'moments' dice qué canciones suenan en cada momento (si hay varias, rotan); 'volume' es el volumen de cada momento (0 a 1). Puedes agregar canciones: sube el .mp3 a esta carpeta y agrégalo aquí.",
+  "tracks": {
+    "menu": {
+      "file": "menu.mp3",
+      "title": "Menú gamer",
+      "credit": "backgroundmusicmaster · gamer menu"
+    },
+    "instrucciones": {
+      "file": "instrucciones.mp3",
+      "title": "Pensando (loop)",
+      "credit": "vadim_makes_sound · quiz thinking timer loop"
+    },
+    "resultados": {
+      "file": "resultados.mp3",
+      "title": "Jazz indie",
+      "credit": "idoberg · fun indie game jazz"
+    },
+    "final": {
+      "file": "final.mp3",
+      "title": "Retro de montaña",
+      "credit": "the_mountain · retro game"
+    },
+    "carreras-01": {
+      "file": "carreras-01.mp3",
+      "title": "Carreras 1",
+      "credit": "hitslab · racing car automotive"
+    },
+    "carreras-02": {
+      "file": "carreras-02.mp3",
+      "title": "Carreras 2",
+      "credit": "mfcc · racing speed action"
+    },
+    "juego-01": {
+      "file": "juego-01.mp3",
+      "title": "Chiptune 1",
+      "credit": "hitslab · chiptune video game"
+    },
+    "juego-02": {
+      "file": "juego-02.mp3",
+      "title": "Arcade retro 1",
+      "credit": "mfcc · retro arcade game"
+    },
+    "juego-03": {
+      "file": "juego-03.mp3",
+      "title": "Chiptune 2",
+      "credit": "tatamusic · chiptune video game"
+    },
+    "juego-04": {
+      "file": "juego-04.mp3",
+      "title": "Gaming 1",
+      "credit": "hitslab · game gaming video game"
+    },
+    "juego-05": {
+      "file": "juego-05.mp3",
+      "title": "Arcade retro 2",
+      "credit": "moodmode · retro game arcade"
+    },
+    "juego-06": {
+      "file": "juego-06.mp3",
+      "title": "Gaming 2",
+      "credit": "tatamusic · game music"
+    },
+    "juego-07": {
+      "file": "juego-07.mp3",
+      "title": "Gaming 3",
+      "credit": "atlasaudio · game music"
+    },
+    "juego-08": {
+      "file": "juego-08.mp3",
+      "title": "Gaming 4",
+      "credit": "tatamusic · gaming game video game"
+    },
+    "juego-09": {
+      "file": "juego-09.mp3",
+      "title": "Bajo potente",
+      "credit": "karumaru · bass go brrr"
+    },
+    "juego-10": {
+      "file": "juego-10.mp3",
+      "title": "Gaming 5",
+      "credit": "tatamusic · game gaming video game"
+    },
+    "juego-11": {
+      "file": "juego-11.mp3",
+      "title": "Videojuego corto",
+      "credit": "moodmode · a video game (short)"
+    },
+    "juego-12": {
+      "file": "juego-12.mp3",
+      "title": "Loop 13",
+      "credit": "xtremefreddy · game music loop 13"
+    },
+    "juego-13": {
+      "file": "juego-13.mp3",
+      "title": "8 bits",
+      "credit": "moodmode · game 8-bit on (short)"
+    },
+    "juego-14": {
+      "file": "juego-14.mp3",
+      "title": "Desafío",
+      "credit": "u_9gm93txock · game challenge scene"
+    },
+    "juego-15": {
+      "file": "juego-15.mp3",
+      "title": "Loop 17",
+      "credit": "xtremefreddy · game music loop 17"
+    },
+    "juego-16": {
+      "file": "juego-16.mp3",
+      "title": "Gaming 6",
+      "credit": "mfcc · game music"
+    }
+  },
+  "moments": {
+    "lobby": [
+      "menu"
+    ],
+    "intro": [
+      "instrucciones"
+    ],
+    "play": [
+      "juego-01",
+      "juego-02",
+      "juego-03",
+      "juego-04",
+      "juego-05",
+      "juego-06",
+      "juego-07",
+      "juego-08",
+      "juego-09",
+      "juego-10",
+      "juego-11",
+      "juego-12",
+      "juego-13",
+      "juego-14",
+      "juego-15",
+      "juego-16"
+    ],
+    "race": [
+      "carreras-01",
+      "carreras-02"
+    ],
+    "results": [
+      "resultados"
+    ],
+    "final": [
+      "final"
+    ]
+  },
+  "volume": {
+    "lobby": 0.5,
+    "intro": 0.3,
+    "play": 0.25,
+    "race": 0.25,
+    "results": 0.45,
+    "final": 0.7
+  },
+  "raceGames": [
+    "carrera",
+    "sky_patrol",
+    "motomamacita"
+  ]
+}
