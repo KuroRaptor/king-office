@@ -25,7 +25,9 @@ const GAMES = {
   village_defense:{d:75,cap:60000,lo:800,hi:6300,e:1}, rat_run:{d:60,cap:40000,lo:300,hi:4500,e:1},
   color_arrows:{d:45,cap:60000,lo:800,hi:6800,e:1},
   tower_blox:{d:60,cap:60000,lo:500,hi:5000,e:1}, fruit_combo:{d:75,cap:60000,lo:500,hi:5500,e:1},
-  archery:{d:45,cap:40000,lo:500,hi:2700,e:1}, bull_jump:{d:45,cap:40000,lo:400,hi:4200,e:1}
+  archery:{d:45,cap:40000,lo:500,hi:2700,e:1}, bull_jump:{d:45,cap:40000,lo:400,hi:4200,e:1},
+  knife_hit:{d:60,cap:60000,lo:600,hi:5100,e:1}, lumberjack:{d:45,cap:60000,lo:800,hi:6800,e:1},
+  chick_tower:{d:60,cap:40000,lo:400,hi:3900,e:1}, pizza_memory:{d:60,cap:40000,lo:300,hi:3800,e:1}
 };
 const BOT_NAMES=['Ana L.','Luis R.','Carla M.','Pedro S.','Sofía G.','Diego P.','Valeria C.','Jorge A.','Camila R.','Andrés F.','Daniela H.','Marco T.','Lucía B.','Fernando V.','Gabriela O.','Ricardo N.','Paola D.','Héctor Z.','Mariela E.','Oscar I.','Karla U.','Esteban Q.','Fabiola J.','Rodrigo K.','Natalia Y.','Mauricio W.','Alejandra X.','Iván M.','Rocío P.','Kevin S.','Melissa A.','Cristian L.','Andrea G.','Erick R.','Patricia C.','Samuel D.','Gloria F.','Javier H.','Lorena B.','Manuel T.','Tatiana V.','Raúl O.','Silvia N.','Bryan E.','Yesenia I.','Walter U.','Dayana Q.','Allan J.','Rebeca K.','Nelson Y.'];
 const SCHEMA = [
@@ -213,12 +215,12 @@ async function api(req,env,url){
     if(!s0.host_key||key!==s0.host_key)return bad('host',403);
     let s=await advance(env,s0);const now=Date.now(),A=body.action;
     const run=(sql,...a)=>DB.prepare(sql).bind(...a).run();
-    const validPlan=a=>[...new Set((Array.isArray(a)?a:[]).filter(x=>GAMES[x]))].slice(0,18);
+    const validPlan=a=>[...new Set((Array.isArray(a)?a:[]).filter(x=>GAMES[x]))].slice(0,25);
     switch(A){
       case 'ping':return json({ok:true});
       case 'config':{
         if(s.phase!=='LOBBY')return bad('not_lobby',409);
-        const event=cleanName(body.event).slice(0,40),mode=body.mode==='manual'?'manual':'random',rounds=Math.max(2,Math.min(18,body.rounds|0||5));
+        const event=cleanName(body.event).slice(0,40),mode=body.mode==='manual'?'manual':'random',rounds=Math.max(2,Math.min(25,body.rounds|0||5));
         const durMode=['game','20','45'].includes(String(body.durMode))?String(body.durMode):'game';
         const cfg={manual:validPlan(body.manual),disabled:(Array.isArray(body.disabled)?body.disabled:[]).filter(x=>GAMES[x]),intro:[15,25,40].includes(+body.intro)?+body.intro:25};
         await run(`UPDATE session SET event=?,mode=?,rounds=?,dur_mode=?,cfg=?,plan=?,ver=ver+1 WHERE code=? AND phase='LOBBY'`,event,mode,rounds,durMode,JSON.stringify(cfg),JSON.stringify(validPlan(body.plan)),s.code);break}

@@ -558,7 +558,7 @@ function stopGame(){cancelAnimationFrame(gRaf);E=null;ptrs.clear();stopDemo();tu
 function finishGame(forced){
   if(!E||E.ended||!S.me)return;const r=S.round;E.end();cancelAnimationFrame(gRaf);
   if(!S.me.res[r]){
-    const res={raw:E.getScore(),acc:E.getAccuracy(),combo:E.getMaxCombo(),dur:E.getDuration(),at:now()};
+    const res={raw:E.actions>0?E.getScore():0,acc:E.getAccuracy(),combo:E.getMaxCombo(),dur:E.getDuration(),at:now()};   // sin tocar nada no hay puntos (el servidor lo exige)
     S.me.res[r]=res;myLocal[r]=res;
     if(MODE==='live'){const m=loadMe();if(m)send('/api/result',{id:m.id,token:m.token,round:r,game:S.plan[r],raw:res.raw,acc:res.acc,combo:res.combo,dur:Math.round(res.dur*10)/10,actions:E.actions})}
   }

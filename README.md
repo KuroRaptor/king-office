@@ -65,16 +65,19 @@ git commit -am "..." && git push   # Cloudflare publica solo
 
 ---
 
-## Juegos
+## Juegos (26)
 
 | Categoría | Juegos |
 |---|---|
-| Reflejos | Salta la tablita · Aplasta cucarachas · Invasores rebeldes · Patrulla aérea |
-| Velocidad | Café express · **Motomamacita** |
-| Precisión | Tiro rápido · Rompe bloques |
-| Control | No dejes caer el avión |
-| Decisión | No toques el rojo · No mueras |
+| Reflejos | Salta la tablita · Aplasta cucarachas · Invasores rebeldes · Patrulla aérea · ¡Que no te aplasten! · ¡Salta, que viene el toro! · Lanza cuchillos |
+| Velocidad | Café express · Motomamacita · Pelotas y flechas · Leñador |
+| Precisión | Tiro rápido · Rompe bloques · Indios vs Conquistadores · Torre de bloques · Tiro con arco |
+| Memoria | Memoria pizza |
+| Control | No dejes caer el avión · Sube brincando · Torre del pollito |
+| Decisión | No toques el rojo · No mueras · Lluvia de bloques · Combo de frutas |
 | Resistencia | Carrera costera (con turbos) · Impresora furiosa |
+
+Antes de cada juego aparece "Así se juega", con un video automático, los controles, qué suma y qué resta, el botón **Probar** y el botón **¡Estoy listo!**. Un torneo puede tener hasta 25 rondas.
 
 **Puntaje por juego:** de 0 a 1000. El 70 % depende de tu posición y el 30 % de qué tan cerca quedaste del mejor. Además, cada ronda en la mitad de arriba suma +40. El total es el **King Score**.
 
