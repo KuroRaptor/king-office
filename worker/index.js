@@ -20,7 +20,10 @@ const GAMES = {
   brick_breaker:{d:60,cap:20000,lo:300,hi:3800,e:1}, dont_touch_red:{d:45,cap:40000,lo:800,hi:8800,e:1},
   space_invaders:{d:60,cap:40000,lo:800,hi:6000,e:1}, survival_chaos:{d:60,cap:20000,lo:300,hi:4500,e:.8},
   coffee_rush:{d:45,cap:30000,lo:400,hi:4000,e:1}, sky_patrol:{d:60,cap:40000,lo:700,hi:5900,e:1},
-  printer_rage:{d:45,cap:40000,lo:1200,hi:7200,e:1}
+  printer_rage:{d:45,cap:40000,lo:1200,hi:7200,e:1},
+  jump_up:{d:60,cap:40000,lo:400,hi:4200,e:1}, block_rain:{d:75,cap:60000,lo:300,hi:4800,e:1},
+  village_defense:{d:75,cap:60000,lo:800,hi:6300,e:1}, rat_run:{d:60,cap:40000,lo:300,hi:4500,e:1},
+  color_arrows:{d:45,cap:60000,lo:800,hi:6800,e:1}
 };
 const BOT_NAMES=['Ana L.','Luis R.','Carla M.','Pedro S.','Sofía G.','Diego P.','Valeria C.','Jorge A.','Camila R.','Andrés F.','Daniela H.','Marco T.','Lucía B.','Fernando V.','Gabriela O.','Ricardo N.','Paola D.','Héctor Z.','Mariela E.','Oscar I.','Karla U.','Esteban Q.','Fabiola J.','Rodrigo K.','Natalia Y.','Mauricio W.','Alejandra X.','Iván M.','Rocío P.','Kevin S.','Melissa A.','Cristian L.','Andrea G.','Erick R.','Patricia C.','Samuel D.','Gloria F.','Javier H.','Lorena B.','Manuel T.','Tatiana V.','Raúl O.','Silvia N.','Bryan E.','Yesenia I.','Walter U.','Dayana Q.','Allan J.','Rebeca K.','Nelson Y.'];
 const SCHEMA = [

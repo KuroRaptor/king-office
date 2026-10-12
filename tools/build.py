@@ -16,7 +16,7 @@ SRC, PUB, DIST = ROOT / 'client', ROOT / 'public', ROOT / 'dist'
 PUB.mkdir(exist_ok=True); DIST.mkdir(exist_ok=True); (PUB / 'sound').mkdir(exist_ok=True)
 rd = lambda n: (SRC / n).read_text(encoding='utf-8')
 
-ORDER = ['core.js', 'games2.js', 'games3.js', 'engine_tail.js', 'app.js', 'music.js']
+ORDER = ['core.js', 'games2.js', 'games3.js', 'games4.js', 'games5.js', 'engine_tail.js', 'app.js', 'music.js']
 css, body = rd('styles.css'), rd('body.html')
 PL = json.loads(rd('playlist.json')); PL.pop('_info', None)
 pre = 'const DEFAULT_PL=' + json.dumps(PL, ensure_ascii=False) + ';\n'
