@@ -136,7 +136,7 @@ async function poll(force){
 function roomGone(){
   if(ROLE==='host'){store.set('ko-host','null');location.replace('/')}
   else if(ROLE==='screen')location.replace('/');
-  else if(ROLE==='phone'){clearMe();myLocal={};S.me=null;S.code='';S.ver=-1;joinNote='';S.players=[];stopGame();phoneShow('join');$('#joinErr').textContent=t('err.code')}
+  else if(ROLE==='phone'){clearMe();myLocal={};S.me=null;S.code='';S.ver=-1;joinNote='';S.players=[];stopGame();phoneShow('join');$('#joinErr').textContent=t('err.gone')}
 }
 function setNet(ok){if(ok===netOk)return;netOk=ok;$('#net').hidden=ok}
 function merge(j){
@@ -704,6 +704,7 @@ $('#aStart').addEventListener('click',()=>adminAct('start'));
 $('#aNext').addEventListener('click',()=>adminAct('next'));
 $('#aPause').addEventListener('click',()=>adminAct('pause'));
 $('#aEnd').addEventListener('click',()=>askConfirm(t('confirm.end'),t('confirm.endYes'),()=>adminAct('end')));
+$('#aClose').addEventListener('click',()=>askConfirm(t('confirm.close'),t('confirm.closeYes'),async()=>{if(MODE==='demo'){adminAct('reset');return}const j=await adminAct('close');if(j&&j.ok){store.set('ko-host','null');location.replace('/')}}));
 $('#aReset').addEventListener('click',()=>{const n=S.players.filter(p=>!p.kicked).length;askConfirm(t('confirm.reset',{n}),t('confirm.resetYes'),()=>adminAct('reset'))});
 $('#aLock').addEventListener('click',()=>{SFX.ui();adminAct('lock')});
 $('#aNo').addEventListener('click',()=>{$('#aConfirm').hidden=true;confirmAct=null});

@@ -18,5 +18,7 @@
       "database_id": "fd2dd705-7cd9-4925-b1d4-48bd2916697a"
     }
   ],
+  // limpieza diaria de salas viejas (09:00 UTC = 3:00 a. m. en Honduras)
+  "triggers": { "crons": ["0 9 * * *"] },
   "observability": { "enabled": true }
 }

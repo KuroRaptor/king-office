@@ -54,6 +54,7 @@ let ready=false;
 async function init(env){
   if(ready)return;await env.DB.batch(SCHEMA.map(q=>env.DB.prepare(q)));
   try{await env.DB.prepare('ALTER TABLE session ADD COLUMN host_key TEXT').run()}catch(e){/* ya existe */}
+  try{await env.DB.prepare('ALTER TABLE session ADD COLUMN seen INTEGER').run()}catch(e){/* ya existe */}
   ready=true;
 }
 function parse(s){s.plan=JSON.parse(s.plan||'[]');s.cfg=JSON.parse(s.cfg||'{}');return s}
@@ -71,11 +72,16 @@ async function createSession(env,event){
   throw new Error('no_code');
 }
 /* Borra salas de más de 2 días para que la base de datos no crezca sin límite */
-async function cleanup(env){
-  const old=(await env.DB.prepare('SELECT code FROM session WHERE created<? LIMIT 20').bind(Date.now()-2*864e5).all()).results;
-  for(const o of old)await env.DB.batch([env.DB.prepare('DELETE FROM ticket WHERE pid IN (SELECT id FROM player WHERE code=?)').bind(o.code),env.DB.prepare('DELETE FROM ready WHERE code=?').bind(o.code),env.DB.prepare('DELETE FROM result WHERE code=?').bind(o.code),
-    env.DB.prepare('DELETE FROM player WHERE code=?').bind(o.code),env.DB.prepare('DELETE FROM session WHERE code=?').bind(o.code)]);
+/* Salas: se borran después de 24 horas sin actividad (seen = última acción; si no hay, la hora de creación) */
+const IDLE_MS=24*3600e3;
+function purge(env,code){return env.DB.batch([env.DB.prepare('DELETE FROM ticket WHERE pid IN (SELECT id FROM player WHERE code=?)').bind(code),env.DB.prepare('DELETE FROM ready WHERE code=?').bind(code),
+  env.DB.prepare('DELETE FROM result WHERE code=?').bind(code),env.DB.prepare('DELETE FROM player WHERE code=?').bind(code),env.DB.prepare('DELETE FROM session WHERE code=?').bind(code)])}
+async function cleanup(env,max=20){
+  const old=(await env.DB.prepare('SELECT code FROM session WHERE COALESCE(seen,created)<? LIMIT ?').bind(Date.now()-IDLE_MS,max).all()).results;
+  for(const o of old)await purge(env,o.code);
+  return old.length;
 }
+const touch=(env,code)=>env.DB.prepare('UPDATE session SET seen=? WHERE code=?').bind(Date.now(),code).run();
 const reload=(env,s)=>load(env,s.code);
 const durOf=(s,gid)=>s.dur_mode==='game'?GAMES[gid].d:Math.max(10,Math.min(120,+s.dur_mode||30));
 function light(s){return{code:s.code,event:s.event,phase:s.phase,round:s.round,plan:s.plan,dur:s.dur,durMode:s.dur_mode,mode:s.mode,rounds:s.rounds,cfg:s.cfg,
@@ -133,7 +139,7 @@ async function botResults(env,s){
     return env.DB.prepare('INSERT OR IGNORE INTO result(pid,code,round,game,raw,acc,combo,dur,actions,at) VALUES(?,?,?,?,?,?,?,?,?,?)').bind(b.id,s.code,s.round,gid,raw,Math.round(rnd(.55,1)*100)/100,2+(Math.random()*12|0),s.dur,0,at)});
   await env.DB.batch(st);
 }
-const bump=(env,code)=>env.DB.prepare('UPDATE session SET ver=ver+1 WHERE code=?').bind(code).run();
+const bump=(env,code)=>env.DB.prepare('UPDATE session SET ver=ver+1,seen=? WHERE code=?').bind(Date.now(),code).run();
 async function auth(env,body){
   const p=await env.DB.prepare('SELECT * FROM player WHERE id=?').bind(String(body.id||'')).first();
   if(!p||p.token!==body.token)return null;return p;
@@ -242,6 +248,7 @@ async function api(req,env,url){
           DB.prepare('DELETE FROM player WHERE code=?').bind(s.code),
           DB.prepare(`UPDATE session SET phase='LOBBY',round=-1,plan=?,locked=0,auto=1,intro_end=0,play_end=0,results_end=0,close_at=0,ended_at=0,ver=ver+1 WHERE code=?`).bind(JSON.stringify(s.mode==='manual'?(s.cfg.manual||[]):[]),s.code)]);
         break;
+      case 'close':await purge(env,s.code);return json({ok:true,closed:true});
       case 'lock':await run('UPDATE session SET locked=?,ver=ver+1 WHERE code=?',s.locked?0:1,s.code);break;
       case 'kick':await run('UPDATE player SET kicked=1 WHERE id=? AND code=?',String(body.pid||''),s.code);await bump(env,s.code);break;
       case 'bots':{
@@ -261,6 +268,7 @@ async function api(req,env,url){
         await bump(env,s.code);break}
       default:return bad('action');
     }
+    if(A!=='ping')await touch(env,s.code);
     return json({ok:true});
   }
   return bad('not_found',404);
@@ -277,5 +285,10 @@ export default {
       if(url.pathname==='/admin')return Response.redirect(url.origin+'/',302);
       return env.ASSETS.fetch(req);
     }catch(e){return json({error:'server',detail:String(e&&e.message||e)},500)}
+  },
+  /* Limpieza diaria (cron en wrangler.jsonc): borra las salas con más de 24 h sin actividad */
+  async scheduled(ev,env,ctx){
+    if(!env.DB)return;
+    ctx.waitUntil((async()=>{await init(env);for(let i=0;i<20;i++){if(await cleanup(env,50)<50)break}})());
   }
 };

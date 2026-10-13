@@ -32,6 +32,13 @@ La base de datos `king-office` ya está indicada en `wrangler.jsonc`, así que s
 
 ---
 
+## Salas: cerrar y borrado automático
+
+- **Terminar torneo** pasa al podio y la coronación. La sala sigue existiendo.
+- **Reiniciar sala** borra jugadores y puntajes, pero conserva el código y el QR.
+- **Cerrar sala** borra todo al instante: jugadores, puntajes y código. Pide confirmación. Los celulares salen con el aviso "Esta sala se cerró o venció".
+- **Borrado automático:** una sala se borra después de **24 horas sin actividad**. Cuenta como actividad que alguien se una, que se envíe un puntaje o cualquier botón de la consola. La limpieza corre sola todos los días a las 3:00 a. m. (hora de Honduras), con el cron configurado en `wrangler.jsonc`, y también cada vez que alguien crea una sala.
+
 ## Sonido
 
 - **Pantalla grande:** la música cambia sola según el momento: sala de espera, instrucciones, juego, resultados y coronación. La pestaña **Música** de la consola tiene pausa, siguiente, volumen y la canción de cada momento.
